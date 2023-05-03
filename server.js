@@ -15,8 +15,14 @@ server.set('view engine', 'html');
 server.use(express.static(__dirname + '/public')); // .use is key word that will be used for middleware for every single file
 
 server.get('/', (req,res) =>{
-    res.render('index'); //pulling index
-})
+    res.render('index', {
+        partials: {
+            footer: 'partials/footer', // consuming after the partials are imported
+            header: 'partials/header',
+            main: 'partials/main/landing' // go down file tree 
+        }
+    }); 
+});
 
 server.get('/heartbeat', (req, res) => {
     res.json({
