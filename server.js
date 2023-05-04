@@ -42,7 +42,7 @@ const validCreds = {
 
 server.get('/', (req,res) =>{
     res.render('index', {
-        locals: setNavs (req.url,navs), // req.url is current Href
+        locals: setNavs (req.url,navs, !! req.session.userId), // req.url is current Href
         partials: setMainView('landing')
     }); 
 });
@@ -50,14 +50,14 @@ server.get('/', (req,res) =>{
 server.get('/about', (req,res) =>{
     console.log('pota', req.url);
     res.render('index', {
-        locals: setNavs (req.url,navs), // req.url is current Href
+        locals: setNavs (req.url,navs, !! req.session.userId), // req.url is current Href
         partials: setMainView('about')
     }); 
 });
 
 server.get('/gallery', (req,res) =>{
     res.render('index', {
-        locals: setNavs (req.url,navs), // req.url is current Href
+        locals: setNavs (req.url,navs, !! req.session.userId), // req.url is current Href
         partials: setMainView('gallery')
     }); 
 });
@@ -71,7 +71,7 @@ server.get('/heartbeat', (req, res) => {
 
 server.get('/login', (req,res) =>{
     res.render('index', {
-        locals: setNavs (req.url,navs), // req.url is current Href
+        locals: setNavs (req.url,navs, !! req.session.userId), // req.url is current Href
         partials: setMainView('login')
     }); 
 });
@@ -93,14 +93,14 @@ server.post('/login', (req,res) =>{  // server(post) is receiving what client pu
 
 server.get('/logout', (req,res) =>{
     res.render('index', {
-        locals: setNavs (req.url,navs), // req.url is current Href
+        locals: setNavs (req.url,navs, !! req.session.userId), // req.url is current Href
         partials: setMainView('logout')
     }); 
 });
 
 server.get('/contact-us', (req,res) =>{
     res.render('index', {
-        locals: setNavs (req.url,navs), // req.url is current Href
+        locals: setNavs (req.url,navs, !! req.session.userId), // req.url is current Href
         partials: setMainView('contact-us') // this line contact-us is the name of the file that is in the views directory
     }); 
 });
@@ -109,7 +109,7 @@ server.get('/contact-us', (req,res) =>{
 
 server.get('/profile', checkAuth, (req,res) =>{
     res.render('index', {
-        locals: setNavs (req.url,navs), // req.url is current Href
+        locals: setNavs (req.url,navs, !! req.session.userId), // req.url is current Href
         partials: setMainView('profile')
     }); 
 });
