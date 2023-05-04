@@ -71,6 +71,10 @@ height: 100%
     margin: 0 0 0 24px;
 }
 
+.navs a.active {
+   color: crimson;
+}
+
 .navs a:first-of-type{
     flex: 1;
     margin-left: 0;

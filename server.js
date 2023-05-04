@@ -3,7 +3,7 @@
 require('dotenv').config();
 const es5Render = require('express-es6-template-engine');
 const es6Renderer = require('express-es6-template-engine');
-const {setMainView} = require('./utils'); // call it 
+const {setMainView, setNavs} = require('./utils'); // call it 
 const express = require('express');
 const navs = require('./data/navs.json')
 
@@ -18,49 +18,23 @@ server.use(express.static(__dirname + '/public')); // .use is key word that will
 
 server.get('/', (req,res) =>{
     res.render('index', {
-        locals: {navs},
+        locals: setNavs (req.url,navs), // req.url is current Href
         partials: setMainView('landing')
     }); 
 });
 
 server.get('/about', (req,res) =>{
+    console.log('pota', req.url);
     res.render('index', {
-        locals: {navs},
+        locals: setNavs (req.url,navs), // req.url is current Href
         partials: setMainView('about')
     }); 
 });
 
 server.get('/gallery', (req,res) =>{
     res.render('index', {
-        locals: {navs},
+        locals: setNavs (req.url,navs), // req.url is current Href
         partials: setMainView('gallery')
-    }); 
-});
-
-server.get('/contact-us', (req,res) =>{
-    res.render('index', {
-        locals: {navs},
-        partials: setMainView('contact-us') // this line contact-us is the name of the file that is in the views directory
-    }); 
-});
-server.get('/login', (req,res) =>{
-    res.render('index', {
-        locals: {navs},
-        partials: setMainView('login')
-    }); 
-});
-
-server.get('/logout', (req,res) =>{
-    res.render('index', {
-        locals: {navs},
-        partials: setMainView('logout')
-    }); 
-});
-
-server.get('/profile', (req,res) =>{
-    res.render('index', {
-        locals: {navs},
-        partials: setMainView('profile')
     }); 
 });
 
@@ -70,5 +44,34 @@ server.get('/heartbeat', (req, res) => {
         "status": "good"
     })
 });
+
+server.get('/contact-us', (req,res) =>{
+    res.render('index', {
+        locals: setNavs (req.url,navs), // req.url is current Href
+        partials: setMainView('contact-us') // this line contact-us is the name of the file that is in the views directory
+    }); 
+});
+server.get('/login', (req,res) =>{
+    res.render('index', {
+        locals: setNavs (req.url,navs), // req.url is current Href
+        partials: setMainView('login')
+    }); 
+});
+
+server.get('/logout', (req,res) =>{
+    res.render('index', {
+        locals: setNavs (req.url,navs), // req.url is current Href
+        partials: setMainView('logout')
+    }); 
+});
+
+server.get('/profile', (req,res) =>{
+    res.render('index', {
+        locals: setNavs (req.url,navs), // req.url is current Href
+        partials: setMainView('profile')
+    }); 
+});
+
+
 
 server.listen(PORT, () => console.log(`The server is running at PORT ${PORT}.`))
