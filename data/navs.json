@@ -1,9 +1,10 @@
 [
     {
       "href": "/",
-      "isPrivate": false,
+      "isPrivate": false, 
       "name": "Home"
     },
+    
     {
       "href": "/gallery",
       "isPrivate": false,
