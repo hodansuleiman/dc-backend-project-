@@ -19,7 +19,7 @@ const handleSubmit = async (e) => {
     //we need to make the data readiable so we use stringufy
     const stringified = stringifyFormData(data) // firing function stringify 
     const response = await doLogin(stringified);
-    renderForm();
+    location.href = response.redirectTo; // clent is redirecting not the server
     console.log(`The user is logged in: ${response.isAuthenticated}`);
 };
 
