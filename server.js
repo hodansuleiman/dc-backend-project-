@@ -24,6 +24,16 @@ server.get('/', (req,res) =>{
     }); 
 });
 
+server.get('/login', (req,res) =>{
+    res.render('index', {
+        partials: {
+            footer: 'partials/footer', // consuming after the partials are imported
+            header: 'partials/header',
+            main: 'partials/main/login' // go down file tree 
+        }
+    }); 
+});
+
 server.get('/heartbeat', (req, res) => {
     res.json({
         "is":"working",
