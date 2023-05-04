@@ -1,5 +1,11 @@
-const form = document.getElementById('form'); // initliazing form to be element from DOM (in index it's grabbing elementbyID 'form)
+
+if(window.location.pathname === '/login'){
+
+    const form = document.getElementById('form'); // initliazing form to be element from DOM (in index it's grabbing elementbyID 'form)
 const credsContainer =form.querySelector('#credentials-container');
+
+
+
 
 
 //function to make data readalble which is passed in handlesubmit 
@@ -51,3 +57,7 @@ async function doLogin(body) {
     const response = await data.json();
     return response;
 }
+
+
+}
+
