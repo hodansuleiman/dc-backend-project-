@@ -5,6 +5,7 @@ const es5Render = require('express-es6-template-engine');
 const es6Renderer = require('express-es6-template-engine');
 const {setMainView} = require('./utils'); // call it 
 const express = require('express');
+const navs = require('./data/navs.json')
 
 const server = express();
 const  PORT  = process.env.PORT || 8080;
@@ -17,12 +18,14 @@ server.use(express.static(__dirname + '/public')); // .use is key word that will
 
 server.get('/', (req,res) =>{
     res.render('index', {
+        locals: {navs},
         partials: setMainView('landing')
     }); 
 });
 
 server.get('/login', (req,res) =>{
     res.render('index', {
+        locals: {navs},
         partials: setMainView('login')
     }); 
 });
