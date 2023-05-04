@@ -42,22 +42,30 @@ const validCreds = {
 
 server.get('/', (req,res) =>{
     res.render('index', {
-        locals: setNavs (req.url,navs, !! req.session.userId), // req.url is current Href
+        locals: setNavs (req.url,navs, !!req.session.userId), // req.url is current Href
         partials: setMainView('landing')
     }); 
 });
 
+server.get("/home", (req, res) => {
+    res.render("index", {
+      locals: setNavs(req.url, navs, !!req.session.userId),
+  
+      partials: setMainView("home"),
+    });
+  });
+
 server.get('/about', (req,res) =>{
     console.log('pota', req.url);
     res.render('index', {
-        locals: setNavs (req.url,navs, !! req.session.userId), // req.url is current Href
+        locals: setNavs (req.url,navs, !!req.session.userId), // req.url is current Href
         partials: setMainView('about')
     }); 
 });
 
 server.get('/gallery', (req,res) =>{
     res.render('index', {
-        locals: setNavs (req.url,navs, !! req.session.userId), // req.url is current Href
+        locals: setNavs (req.url,navs, !!req.session.userId), // req.url is current Href
         partials: setMainView('gallery')
     }); 
 });
@@ -71,11 +79,10 @@ server.get('/heartbeat', (req, res) => {
 
 server.get('/login', (req,res) =>{
     res.render('index', {
-        locals: setNavs (req.url,navs, !! req.session.userId), // req.url is current Href
-        partials: setMainView('login')
-    }); 
+        locals: setNavs (req.url,navs, !!req.session.userId), // req.url is current Href
+        partials: setMainView('login'),
 });
-
+});
 server.post('/login', (req,res) =>{  // server(post) is receiving what client puts in 
     const afterLogin ={
         isAuthenticated:false,
@@ -83,7 +90,7 @@ server.post('/login', (req,res) =>{  // server(post) is receiving what client pu
     };
     const {password, username} = req.body;
     if (password === validCreds.password && username === validCreds.username) {
-        req.session.userId=username
+        req.session.userId=username;
         afterLogin.isAuthenticated = true;
         afterLogin.redirectTo='/profile';
     } 
@@ -92,27 +99,29 @@ server.post('/login', (req,res) =>{  // server(post) is receiving what client pu
 
 
 server.get('/logout', (req,res) =>{
+   req.session.destroy();
+   res.redirect('/');
+});
+
+
+server.get('/profile', checkAuth, (req,res) =>{
     res.render('index', {
-        locals: setNavs (req.url,navs, !! req.session.userId), // req.url is current Href
-        partials: setMainView('logout')
+        locals: setNavs (req.url, navs, !!req.session.userId), // req.url is current Href
+        partials: setMainView('profile')
     }); 
 });
 
+
 server.get('/contact-us', (req,res) =>{
     res.render('index', {
-        locals: setNavs (req.url,navs, !! req.session.userId), // req.url is current Href
+        locals: setNavs (req.url,navs, !!req.session.userId), // req.url is current Href
         partials: setMainView('contact-us') // this line contact-us is the name of the file that is in the views directory
     }); 
 });
 
 
 
-server.get('/profile', checkAuth, (req,res) =>{
-    res.render('index', {
-        locals: setNavs (req.url,navs, !! req.session.userId), // req.url is current Href
-        partials: setMainView('profile')
-    }); 
-});
+
 
 
 
