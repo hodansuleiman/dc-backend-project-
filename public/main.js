@@ -13,13 +13,14 @@ return JSON.stringify(data, null, 4);
 
 
 // handle submit is the event that happens after user clicks login 
-const handleSubmit = (e) => {
+const handleSubmit = async (e) => {
     e.preventDefault(); // prevent default to stop page from resfresh
     const data = new FormData(e.target); // creating our data & this is the data that we want to send to the server. This formates our data in a way that makes it possible to send it to the server.
     //we need to make the data readiable so we use stringufy
     const stringified = stringifyFormData(data) // firing function stringify 
-    console.log(stringified);
+    const response = await doLogin(stringified);
     renderForm();
+    console.log(`The user is logged in: ${response.isAuthenticated}`);
 };
 
 
@@ -37,4 +38,16 @@ function renderForm() {
             <input type="submit" value="LogIn">
         `;
         credsContainer.innerHTML = html;
+}
+
+async function doLogin(body) {
+    const data = await fetch('/login', {
+        body,
+        headers: {
+            'Content-Type' : 'application/json'
+        }, 
+        method: 'POST'
+    });
+    const response = await data.json();
+    return response;
 }
