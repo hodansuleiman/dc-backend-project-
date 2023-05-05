@@ -2,7 +2,6 @@
 //import dependencies
 require('dotenv').config();
 const cookieParser = require('cookie-parser');
-const es5Render = require('express-es6-template-engine');
 const es6Renderer = require('express-es6-template-engine');
 const express = require('express');
 const sessions = require('express-session');
@@ -43,30 +42,45 @@ const validCreds = {
 server.get('/', (req,res) =>{
     res.render('index', {
         locals: setNavs (req.url,navs, !!req.session.userId), // req.url is current Href
-        partials: setMainView('landing')
+        partials: setMainView('login')
     }); 
 });
 
-server.get("/home", (req, res) => {
+server.get("/landing", (req, res) => {
     res.render("index", {
       locals: setNavs(req.url, navs, !!req.session.userId),
   
-      partials: setMainView("home"),
+      partials: setMainView("landing"),
     });
   });
 
-server.get('/about', (req,res) =>{
+server.get('/management', (req,res) =>{
     console.log('pota', req.url);
+    res.render('index', {
+        locals: setNavs (req.url,navs, !!req.session.userId), // req.url is current Href
+        partials: setMainView('management')
+    }); 
+});
+
+server.get('/about', (req,res) =>{
     res.render('index', {
         locals: setNavs (req.url,navs, !!req.session.userId), // req.url is current Href
         partials: setMainView('about')
     }); 
 });
 
-server.get('/gallery', (req,res) =>{
+server.get('/clients', (req,res) =>{
     res.render('index', {
         locals: setNavs (req.url,navs, !!req.session.userId), // req.url is current Href
-        partials: setMainView('gallery')
+        partials: setMainView('clients')
+    }); 
+});
+
+server.get('/booking', (req,res) =>{
+    res.render('index', {
+        locals: setNavs (req.url,navs, !!req.session.userId), // req.url is current Href
+        bookingId: req.query.id,
+        partials: setMainView('booking')
     }); 
 });
 
@@ -92,11 +106,17 @@ server.post('/login', (req,res) =>{  // server(post) is receiving what client pu
     if (password === validCreds.password && username === validCreds.username) {
         req.session.userId=username;
         afterLogin.isAuthenticated = true;
-        afterLogin.redirectTo='/profile';
+        afterLogin.redirectTo='/landing';
     } 
     res.json(afterLogin); // send response 
 });
 
+server.get('/register', (req,res) =>{
+    res.render('index', {
+        locals: setNavs (req.url,navs, !!req.session.userId), // req.url is current Href
+        partials: setMainView('register'),
+});
+});
 
 server.get('/logout', (req,res) =>{
    req.session.destroy();
@@ -112,10 +132,10 @@ server.get('/profile', checkAuth, (req,res) =>{
 });
 
 
-server.get('/contact-us', (req,res) =>{
+server.get('/vendors', (req,res) =>{
     res.render('index', {
         locals: setNavs (req.url,navs, !!req.session.userId), // req.url is current Href
-        partials: setMainView('contact-us') // this line contact-us is the name of the file that is in the views directory
+        partials: setMainView('vendors') // this line contact-us is the name of the file that is in the views directory
     }); 
 });
 

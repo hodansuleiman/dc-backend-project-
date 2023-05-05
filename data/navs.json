@@ -1,20 +1,21 @@
 [
-    {
-      "href": "/",
-      "name": "Home"
-    },
-    
-    {
-      "href": "/gallery",
-      "name": "Gallery"
-    },
+  
     {
       "href": "/about",
       "name": "About"
     },
+
     {
-      "href": "/contact-us",
-      "name": "Contact Us"
+      "href": "/Clients",
+      "name": "Clients"
+    },
+    {
+      "href": "/management",
+      "name": "Management"
+    },
+    {
+      "href": "/vendors",
+      "name": "Vendors"
     },
     {
       "href": "/profile",

@@ -62,9 +62,34 @@ height: 100%
     cursor:pointer;
 }
 
-.navs{
+.regcredentials-container{
+    display: flex;
+   
+
+
+
+}
+
+.regcredentials-container input {
+    margin: 14px 0;
+    padding: 6px 12px;
+    width: 100px;
+}
+
+.credentials-container input[type="sumbit"] {
+    cursor:pointer;
+}
+header{
     display: flex;
     justify-content: space-between;
+    align-items: center;;
+    padding: 20px 15px;
+}
+
+
+.navs{
+    display: flex;
+    justify-content: flex-end;
 }
 
 .navs a {
@@ -74,8 +99,12 @@ height: 100%
 .navs a.active {
    color: crimson;
 }
-
-.navs a:first-of-type{
-    flex: 1;
-    margin-left: 0;
+fieldset{
+    border:none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
 }
+
+
