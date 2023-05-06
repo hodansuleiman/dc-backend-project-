@@ -1,0 +1,35 @@
+[
+  
+    {
+      "href": "/about",
+      "name": "About"
+    },
+
+    {
+      "href": "/Clients",
+      "name": "Clients"
+    },
+    {
+      "href": "/management",
+      "name": "Management"
+    },
+    {
+      "href": "/vendors",
+      "name": "Vendors"
+    },
+    {
+      "href": "/profile",
+      "isPrivate": true,
+      "name": "Profile"
+    },
+    {
+      "href": "/login",
+      "isPrivate": false,
+      "name": "Login"
+    },
+    {
+      "href": "/logout",
+      "isPrivate": true,
+      "name": "Logout"
+    }
+  ] 
