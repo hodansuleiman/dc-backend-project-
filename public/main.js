@@ -1,9 +1,17 @@
 // login page
  if(window.location.pathname === '/login' || window.location.pathname === '/'){
 
-const form = document.getElementById('form'); // initliazing form to be element from DOM (in index it's grabbing elementbyID 'form)
-const credsContainer=form.querySelector('#credentials-container');
-
+/**
+ * The function takes in form data and converts it into a readable JSON format.
+ * 
+ * @param fd fd stands for form data, which is an object that contains a collection of key-value pairs
+ * representing form fields and their values. It is typically used to send data from a web page to a
+ * server.
+ * 
+ * @return a JSON stringified version of the data object that was built from the form data passed in as
+ * the argument. The JSON string is formatted with an indentation level of 4 spaces for each nested
+ * level.
+ */
 
 
 //function to make data readalble which is passed in handlesubmit 
@@ -16,6 +24,17 @@ return JSON.stringify(data, null, 4);
 }
 
 
+
+
+/**
+ * This function handles the submit event after a user clicks login, sends the login data to the
+ * server, and redirects the client to the appropriate page.
+ * 
+ * @param e The event object that is passed to the function when the form is submitted. It contains
+ * information about the event, such as the target element (the form that was submitted) and any data
+ * associated with the event (such as the user's input in the form fields).
+ */
+
 // handle submit is the event that happens after user clicks login 
 const handleSubmit = async (e) => {
     e.preventDefault(); // prevent default to stop page from resfresh
@@ -27,7 +46,8 @@ const handleSubmit = async (e) => {
     console.log(`The user is logged in: ${response.isAuthenticated}`);
 };
 
-
+const form = document.getElementById('form'); // initliazing form to be element from DOM (in index it's grabbing elementbyID 'form)
+const credsContainer=form.querySelector('#credentials-container');
 renderForm()// load function
 form.addEventListener('submit', handleSubmit); // handeling submit eventon form capturing data
 
@@ -45,6 +65,17 @@ function renderForm() {
         credsContainer.innerHTML = html;
 }
 
+/**
+ * The function sends a POST request to the '/login' endpoint with a JSON body and returns the response
+ * as a JSON object.
+ * 
+ * @param body The `body` parameter is the data that will be sent in the request body of the `POST`
+ * request to the `/login` endpoint. It is expected to be in JSON format.
+ * 
+ * @return The `doLogin` function is returning a Promise that resolves to the response object obtained
+ * from the server after making a POST request to the `/login` endpoint with the provided `body` data.
+ * The response object is parsed as JSON using the `json()` method before being returned.
+ */
 async function doLogin(body) {
     const data = await fetch('/login', {
         body,
@@ -61,61 +92,191 @@ async function doLogin(body) {
  }
 
 
-if(window.location.pathname === '/register'){
-
-const regform= document.getElementById('form');
-const regcredsContainer=form.querySelector('#regcredentials-container');
-
-
-renderRegisterForm()
-form.addEventListener('submit', handleSubmit); // handeling submit eventon form capturing data
-
-//registertion function 
-function renderRegisterForm() {
-    console.log('testing')
-    const html = `
-    <div class="input-field">
-    <fieldset>
-    <label for="Type">Group type</label>
-    <input type='text' class="form-control" id="groupType" required />
-    </fieldset>
-    <fieldset>
-    <label for="First Name">First Name</label>
-    <input type='text' class="form-control" id="firstName" required />
-    </fieldset>
-    <fieldset>
-    <label for="Last Name">Last Name</label>
-    <input type='text' class="form-control" id="lastName" required />
-    </fieldset>
-    <fieldset>
-    <label for="Email Address">Email Address</label> 
-    <input type='text' class="form-control" id="emailAddress" required />
-    </fieldset>
-    <fieldset>
-    <label for="Password">Password</label> 
-    <input type='text' class="form-control" id="password" required />
-    </fieldset>
-    <fieldset>
-    <label for ="Confirm Password">Confirm Password</label>
-    <input type='text' class="form-control" id="confirmPassword" required />
-    </fieldset>
-
-        <input type="submit" value="Register">
+ // new register page 
+ if(window.location.pathname === '/register') {
+    const form = document.getElementById('form');
+    const regcredsContainer = form.querySelector('#regcredentials-container');
+  
+    renderRegisterForm();
+  
+    form.addEventListener('submit', handleSubmit);
+  
+    function renderRegisterForm() {
+      console.log('testing')
+      const html = `
+        <div class="input-field">
+          <fieldset>
+            <label for="Type">Group type</label>
+            <input type='text' class="form-control" id="groupType" required />
+          </fieldset>
+          <fieldset>
+            <label for="First Name">First Name</label>
+            <input type='text' class="form-control" id="firstName" required />
+          </fieldset>
+          <fieldset>
+            <label for="Last Name">Last Name</label>
+            <input type='text' class="form-control" id="lastName" required />
+          </fieldset>
+          <fieldset>
+            <label for="Email Address">Email Address</label> 
+            <input type='text' class="form-control" id="emailAddress" required />
+          </fieldset>
+          <fieldset>
+            <label for="Password">Password</label> 
+            <input type='text' class="form-control" id="password" required />
+          </fieldset>
+          <fieldset>
+            <label for="Confirm Password">Confirm Password</label>
+            <input type='text' class="form-control" id="confirmPassword" required />
+          </fieldset>
+          <input type="submit" value="Register">
         </div>
-    `;
-    regcredsContainer.innerHTML = html;
-}
+      `;
+      regcredsContainer.innerHTML = html;
+    }
+  
+    async function handleSubmit(event) {
+      event.preventDefault();
+  
+      const user = {
+        groupType: document.querySelector("#groupType").value,
+        firstName: document.querySelector("#firstName").value,
+        lastName: document.querySelector("#lastName").value,
+        email: document.querySelector("#emailAddress").value,
+        password: document.querySelector("#password").value,
+        confirmPassword: document.querySelector("#confirmPassword").value,
+      };
+  
+      // send a POST request to the server with user data
+      const response = await fetch('/register', {
+        method: "POST",
+        headers: {
+          "Content-Type":"application/json"
+        },
+        body: JSON.stringify(user)
+      });
+  
+      // handle the response from the server
+      const data = await response.json();
+      console.log("RESPONSE DATA:", data);
+  
+      // redirect to the landing page
+      document.location.replace("/landing");
+    }
+  }
+  
 
- }
+// if(window.location.pathname === '/register') {
 
 
+// const regform= document.getElementById('form');
+// const regcredsContainer=form.querySelector('#regcredentials-container');
 
+
+// renderRegisterForm()
+// form.addEventListener('submit', handleSubmit); // handeling submit eventon form capturing data
+
+// //registertion function 
+// function renderRegisterForm() {
+//     console.log('testing')
+//     const html = `
+//     <div class="input-field">
+//     <fieldset>
+//     <label for="Type">Group type</label>
+//     <input type='text' class="form-control" id="groupType" required />
+//     </fieldset>
+//     <fieldset>
+//     <label for="First Name">First Name</label>
+//     <input type='text' class="form-control" id="firstName" required />
+//     </fieldset>
+//     <fieldset>
+//     <label for="Last Name">Last Name</label>
+//     <input type='text' class="form-control" id="lastName" required />
+//     </fieldset>
+//     <fieldset>
+//     <label for="Email Address">Email Address</label> 
+//     <input type='text' class="form-control" id="emailAddress" required />
+//     </fieldset>
+//     <fieldset>
+//     <label for="Password">Password</label> 
+//     <input type='text' class="form-control" id="password" required />
+//     </fieldset>
+//     <fieldset>
+//     <label for ="Confirm Password">Confirm Password</label>
+//     <input type='text' class="form-control" id="confirmPassword" required />
+//     </fieldset>
+
+//         <input type="submit" value="Register">
+//         </div>
+//     `;
+//     regcredsContainer.innerHTML = html;
+// }
+
+// // construct user object
+// const user = {
+//     groupType: document.querySelector("#grouptype").value,
+//     firstName: document.querySelector("#firstName").value,
+//     lastName: document.querySelector("#lastName").value,
+//     email: document.querySelector("#emailAddress").value,
+//     password: document.querySelector("#password").value,
+//     confirmPassword: document.querySelector("#confirmPassword").value,
+// }
+
+// // post to server with user object:
+// fetch ("/register",    // format 
+// {
+//     method:"POST", // format
+//     headers: {
+//         "Content-Type":"application/json"
+//     },
+//     body : JSON.stringify(user)
+// }
+// ).then((res)=> res.json())
+// .then(data=>{
+//     console.log ("RES", data);
+//     document.location.replace("/landing"); // redirect to landing page
+// });
+// }
+
+ //}
+
+// after user clicks register send register information to server.
+// function register () // from register on cl;ick handler making the call to the server sending all registration data from form
+// {
+//     // construct user object
+//     const user = {
+//         groupType: document.querySelector("#grouptype").value,
+//         firstName: document.querySelector("#firstName").value,
+//         lastName: document.querySelector("#lastName").value,
+//         email: document.querySelector("#emailAddress").value,
+//         password: document.querySelector("#password").value,
+//         confirmPassword: document.querySelector("#confirmPassword").value,
+//     }
+    
+//     // post to server with user object:
+//     fetch ("/register",    // format 
+//     {
+//         method:"POST", // format
+//         headers: {
+//             "Content-Type":"application/json"
+//         },
+//         body : JSON.stringify(user)
+//     }
+//     ).then((res)=> res.json())
+//     .then(data=>{
+//         console.log ("RES", data);
+//         document.location.replace("/landing"); // redirect to landing page
+//     });
+// }
 
 
 //landing page view once client, mgmt , and vendor are logged in
 
 if(window.location.pathname === '/landing'){
     
+/**
+ * The function creates a search form with an input field and a search button.
+ */
 const searchContainer = document.querySelector('#search-container');
 
 //console.log("??", searchContainer)
@@ -133,6 +294,11 @@ function userSearchForm() {
     searchContainer.innerHTML = html;
 }
 
+/* This code is creating a search form for the landing page and adding an event listener to the form
+submit button. When the form is submitted, it prevents the default behavior and calls the
+`getListings` function with the value of the address input field as an argument. The `getListings`
+function then makes a fetch request to an API to retrieve rental property data based on the address
+input, and displays the data on the landing page. */
 
 userSearchForm();
     /*
@@ -145,8 +311,19 @@ userSearchForm();
 
    })
 
+
+
+
+   /**
+    * The function retrieves rental listings data from an API and generates HTML code to display the
+    * listings on a webpage.
+    * 
+    * @param address The address of the location for which you want to retrieve rental listings.
+    */
     function getListings(address){
-        let query = `https://airdna1.p.rapidapi.com/rentalizer?address=${address}`
+        let urlstring = encodeURIComponent(address)
+        console.log(urlstring)
+        let query = `https://airdna1.p.rapidapi.com/rentalizer?address=${urlstring}`
         fetch(query,{
             method: 'GET',
             headers: {
@@ -167,7 +344,7 @@ userSearchForm();
             
             //pulling usable variables
             const {bedrooms, airbnb_property_id, cover_img, bathrooms, title , listing_url  } = oneRental;
-            console.log( bedrooms, cover_img, bathrooms, title , listing_url   )
+            //console.log( bedrooms, cover_img, bathrooms, title , listing_url   )
             let price = Math.floor(Math.random() * (200 - 150 + 1) + 150) // generate price for listings 
             
             

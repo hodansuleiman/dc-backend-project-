@@ -103,10 +103,11 @@ server.post('/login', (req,res) =>{  // server(post) is receiving what client pu
         redirectTo: '/login'
     };
     const {password, username} = req.body;
+    console.log(username,password)
     if (password === validCreds.password && username === validCreds.username) {
         req.session.userId=username;
         afterLogin.isAuthenticated = true;
-        afterLogin.redirectTo='/landing';
+        afterLogin.redirectTo='/profile';
     } 
     res.json(afterLogin); // send response 
 });
@@ -118,6 +119,25 @@ server.get('/register', (req,res) =>{
 });
 });
 
+server.post('/register', async (req, res) => {
+    const { groupType, firstName, lastName, email, password, confirmPassword } = req.body;
+    
+    // Create new user in the database
+    const newUser = await User.create({
+      groupType,
+      firstName,
+      lastName,
+      email,
+      password,
+      confirmPassword
+    });
+  
+    res.send({
+      message: `User with id ${newUser.id} has been created`
+    });
+  });
+  
+  
 server.get('/logout', (req,res) =>{
    req.session.destroy();
    res.redirect('/');
