@@ -336,6 +336,7 @@ userSearchForm();
 
             /* */
         console.log("data",data.data.comps)
+        //document.querySelector("#searchcontainer").style.display = "none"; // hide search display box
         
         let html = "";
         let output = document.querySelector("#output");
