@@ -161,7 +161,12 @@ server.get('/vendors', (req,res) =>{
     }); 
 });
 
-
+server.get('/payment', (req,res) =>{
+    res.render('index', {
+        locals: setNavs (req.url,navs, !!req.session.userId), // req.url is current Href
+        partials: setMainView('payment') // this line contact-us is the name of the file that is in the views directory
+    }); 
+});
 
 
 
