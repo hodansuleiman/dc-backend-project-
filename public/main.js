@@ -59,8 +59,6 @@ async function doLogin(body) {
 
 }
 
-
-
 if(window.location.pathname === '/register') {
 
 
@@ -134,13 +132,10 @@ fetch ("/register",    // format
 
 }
 
-// //landing page view once client, mgmt , and vendor are logged in
-
 if(window.location.pathname === '/landing'){
 
 const searchContainer = document.querySelector('#search-container');
 
-//console.log("??", searchContainer)
 function userSearchForm() {
     
     const html = `
@@ -155,7 +150,6 @@ function userSearchForm() {
     searchContainer.innerHTML = html;
 
 }
-
 
 userSearchForm(); // calling fumction 
    
@@ -199,10 +193,11 @@ userSearchForm(); // calling fumction
             //add to the dom
             
             newdiv.innerHTML = `<div class="box">
-            <img src="${property.img_cover}" />
+            <div class="boxImg" style="background-image: url(${property.img_cover})"></div>
+    
             <h4>${property.title}</h4>
            <p>Bedrooms</p> <p>${property.bedrooms}</p>
-            <p>${property.bathrooms}</p>
+            <p>Bathrooms: ${property.bathrooms}</p>
             <p>Price:$ ${price} </p>
             <a href="booking?id=${property.id}" class="rent-now-link"}">Rent Now</a>
             </div>`;
@@ -217,9 +212,12 @@ userSearchForm(); // calling fumction
                       bedrooms: property.bedrooms,
                       bathrooms: property.bathrooms,
                       price: price,
-                      id: property.id
+                      id: property.id,
+                      acc: property.accommodates
                     };
+                    console.log("did i save?",  clickedInfo)
                     localStorage.setItem('clickedInfo', JSON.stringify(clickedInfo)); // save it in local storage
+                    console.log( localStorage.getItem('clickedInfo') );
 
                     window.location.href = `booking?id=${property.id}`; // navigate to the booking page changing url but server is not doing anything that is why i dont see any data 
                
@@ -228,28 +226,90 @@ userSearchForm(); // calling fumction
               // Add the new div to the output container
               output.appendChild(newdiv);
                       
-          //output.innerHTML = html;
-                  //output.appendChild(newdiv);
       
       }
     })
 }
 
 
-// booking page 
-//if(window.location.pathname.includes("/booking")) {
-if(true) {
-  console.log(window.location.pathname)
-  const urlParams = new URLSearchParams(window.location.search);
-  const propertyId = urlParams.get('id');
-  console.log(propertyId);
 
-  const propertyIdDiv = document.getElementById('property-id');
-  propertyIdDiv.textContent = propertyId;
+} //end if if inside landing page
+
+
+
+
+if(window.location.pathname.includes("/booking")) {
+    console.log(window.location.pathname)
+    const urlParams = new URLSearchParams(window.location.search); // // create a new url using URLSearchParams object using querystring portion of the URL (that part after the ?)  
+    const propertyId = urlParams.get('id');  // get the value of 'id' 
+    const myInfoData = JSON.parse( localStorage.getItem('clickedInfo') );// get  JSON-formatted string from local storage using the key "clickedInfo" and parse it into a JavaScript object using JSON.parse()
+    console.log("i got info data", myInfoData)
+
+
+
+    const propertyIdDiv = document.getElementById('property-id'); // set  the innerHTML property of an HTML element with the ID 'property-id"
+    const {bedrooms, bathrooms,title, price, acc} = myInfoData; //retrieves the myInfoData object that was previously parsed from JSON in the previous code block. It uses destructuring to extract the values of the bedrooms, bathrooms, title, price, and acc properties from myInfoData
+    
+    //sets the content of the propertyIdDiv element to this HTML string
+    //  p tags containing information about the property, including its title, number of bedrooms and bathrooms, price, and the number of people it accommodates. It also includes an h4 tag containing the property's title.
+
+    propertyIdDiv.innerHTML = ` 
+    <h4>${title}</h4>
+    <p>Bedrooms ${bedrooms}</p>
+    <p>Bathrooms ${bathrooms}</p>
+    <p>Price ${price}</p>
+    <p>Accommodates ${acc}</p>
+    
+    `;
+    
+    
+    
+    /**
+     * The function calculates the total number of days stayed and the corresponding price based on the
+     * start and end dates selected by the user.
+     * 
+     * @return If either `startdate` or `enddate` is empty, the function `calcTotal()` will return
+     * `false`. Otherwise, it will calculate the total number of days stayed and log the result to the
+     * console along with the total cost of the stay.
+     */
+    let startdate = enddate =  ""
+
+    document.querySelector("#startdate").addEventListener("change",(e)=> {
+        console.log("startdate",e.target.value)
+        startdate = e.target.value;
+        calcTotal();
+    })
+
+    document.querySelector("#enddate").addEventListener("change",(e)=> {
+        console.log("enddate",e.target.value)
+        enddate = e.target.value
+        calcTotal();
+    })
+    
+
+    function calcTotal(){
+        if(startdate === "" || enddate === ""){
+            //i need both dates to be valid
+            return false
+        }
+        let s = parseInt( dayjs(startdate).format("D") );
+        let sMonth = dayjs(startdate).daysInMonth()
+        let e = parseInt( dayjs(enddate).format("D") );
+        let eMonth = dayjs(startdate).daysInMonth()
+        let totalDaysStayed = 0;
+
+        console.log(s, e)
+        if(s < e){
+          
+           totalDaysStayed = e - s
+           //may 1 and may 20
+        } else {
+            totalDaysStayed = (s - sMonth) + e
+             //may 20 and june 5
+        }
+        console.log(totalDaysStayed);
+        console.log("$" + totalDaysStayed * price)
+
+    }
+    
 }
-//console.log(window.location.pathname)
-
-//console.log(window.location.pathname)
-}
-
-//}

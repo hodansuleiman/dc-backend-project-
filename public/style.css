@@ -5,6 +5,10 @@
     
 }
 
+* {
+    box-sizing: border-box;
+  }
+
 body{
     background-color: #FAF9F9;
 }
@@ -157,11 +161,21 @@ h4{
 #output{
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
 #output > div{
-    max-width: 500px;
+    width: 23%;
     padding: 20px 0px;
+}
+
+#output .boxImg{
+
+    width: 100%;
+    height: 200px;
+    border-radius: 10px;
+    background-position: center;
 }
 
 
@@ -182,9 +196,7 @@ h4{
     margin: 0 auto;
 }
 
-.bookingform{
-    width: 650px;
-}
+
 
 .bookingform-text {
     text-align: center;
@@ -221,7 +233,7 @@ h4{
     background: none;
     border: 1px solid #ffca00;;
     font-size: 20px;
-    color: #fff;
+    color: black;
     outline: none;
     padding: 3px 0 3px 10px;
     margin-top: 10px;
@@ -269,6 +281,15 @@ h4{
 
 
 
+.s5050{
+    display: flex;;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+}
 
+.s5050 > div{
+    width: 48%;
+}
         
 
