@@ -5,12 +5,16 @@
     
 }
 
+* {
+    box-sizing: border-box;
+  }
+
 body{
     background-color: #FAF9F9;
 }
 
 a{
-    color:white;
+    color: black;
     text-decoration: none;
 
 }
@@ -157,11 +161,21 @@ h4{
 #output{
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
 #output > div{
-    max-width: 500px;
+    width: 23%;
     padding: 20px 0px;
+}
+
+#output .boxImg{
+
+    width: 100%;
+    height: 200px;
+    border-radius: 10px;
+    background-position: center;
 }
 
 
@@ -170,3 +184,112 @@ h4{
     max-height: 25px;
     width: auto;
    }
+
+
+   .main_bg{
+    background-image: url(background.jpg);
+    max-width: 1280px;
+    height: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+
+
+.bookingform-text {
+    text-align: center;
+    margin: 0 0 40px 0;
+}
+
+.bookingform-text h1 span img{
+    margin: 0 10px;
+}
+
+.bookingform-text h1{
+    color: green;
+    font-family: 'Akaya Telivigala', cursive;
+    font-size: 40px;
+    margin-bottom: 20px;
+
+}
+
+.bookingform-text p{
+    color: #fff;
+    font-family: 'Akaya Telivigala', cursive;
+    font-size: large;
+}
+
+.bookmain-form{
+    margin: 10px 10px;
+    width: 300px;
+    display: inline-block;
+}
+
+.bookmain-form div input {
+    width: 100%;
+    font-family: 'Akaya Telivigala', cursive;
+    background: none;
+    border: 1px solid #ffca00;;
+    font-size: 20px;
+    color: black;
+    outline: none;
+    padding: 3px 0 3px 10px;
+    margin-top: 10px;
+}
+.bookmain-form div select{
+    width: 104%;
+    font-family: 'Akaya Telivigala', cursive;
+    background: none;
+    border: 1px solid #ffca00;;
+    font-size: 20px;
+    color: black;
+    outline: none;
+    padding: 3px 0 3px 10px;
+    margin-top: 10px;
+}
+.main-form div span{
+    width: 100%;
+    font-family: 'Akaya Telivigala', cursive;
+    color: orange;
+    font-size: 25px;
+}
+
+#submitbookBtn{
+    width: 100%;
+    text-align: center;
+}
+#submitbookBtn input{
+    font-family: 'Akaya Telivigala', cursive;
+    width: 200px;
+    background-color: red,
+    color green;
+    transition: all .3s;
+}
+#submitbookBtn input:hover{
+    font-family: 'Akaya Telivigala', cursive;
+    width: 200px;
+    background-color: black 
+
+}
+#submitbookBtn input:active{
+    font-size: 19px;
+    background-color: rgb(46, 20, 5) !important;
+    color: red;
+}
+
+
+
+.s5050{
+    display: flex;;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.s5050 > div{
+    width: 48%;
+}
+        
+
