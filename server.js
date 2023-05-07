@@ -76,10 +76,19 @@ server.get('/clients', (req,res) =>{
     }); 
 });
 
+// server.get('/booking', (req,res) =>{
+//     res.render('index', {
+//         locals: setNavs (req.url,navs, !!req.session.userId), // req.url is current Href
+//         bookingId: req.query.id,
+//         partials: setMainView('booking')
+//     }); 
+// });
+
 server.get('/booking', (req,res) =>{
+    console.log(req.query.id);
     res.render('index', {
         locals: setNavs (req.url,navs, !!req.session.userId), // req.url is current Href
-        bookingId: req.query.id,
+        //bookingId: req.query.id,
         partials: setMainView('booking')
     }); 
 });
@@ -121,17 +130,10 @@ server.get('/register', (req,res) =>{
 
 server.post('/register', async (req, res) => {
     const { groupType, firstName, lastName, email, password, confirmPassword } = req.body;
-    
+    console.log('first name', firstName)
     // Create new user in the database
-    const newUser = await User.create({
-      groupType,
-      firstName,
-      lastName,
-      email,
-      password,
-      confirmPassword
-    });
-  
+    
+// db many
     res.send({
       message: `User with id ${newUser.id} has been created`
     });
