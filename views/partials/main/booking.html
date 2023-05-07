@@ -3,7 +3,59 @@
 <form class="main-content" id="form">
     <div class="search-container" id="search-container"></div>
     <div id="property-id"></div>
-</form>
+
+<body class="main-bg">
+    <div class="bookingform">
+        <div class="bookingform-text">
+            <h1><span><img src="art-1.png" alt=""></span>Book Now <span><img src="art-1.png" alt=""></span></h1>
+            <p>Book your dream rental now at [COMPANY NAME]</p>
+        </div>
+        <div class="bookmain-form">
+            <form action="index.php" method="get">
+                <div>
+                    <span>Your full name ?</span>
+                    <input type="text" name="name" id="name" placeholder="Write your name here..." required>
+                </div>
+                <div>
+                    <span>Your email address ?</span>
+                    <input type="email" name="name" id="name" placeholder="Write your email here..." required> 
+                </div>
+                <div>
+                   
+                    <span>How many people ?</span>
+                    <select name="people" id="people" required>
+                        <option value=""><---People---></option>
+                        <option value="1">1 People</option>
+                        <option value="2">2 People</option>
+                        <option value="3">3 People</option>
+                        <option value="4">4 People</option>
+                    </select>
+                  
+                </div>
+                <div>
+                    <span>What time ?</span>
+                    <input type="text" name="time" id="time" placeholder="Time" required>
+                </div>
+                <div>
+                    <span>Check-in</span>
+                    <input type="date" name="date" id="date" placeholder="date" required>
+                </div>
+                <div>
+                    <span>Check-out</Check-in></span>
+                    <input type="date" name="date" id="date" placeholder="date" required>
+                </div>
+                <div>
+                    <span>Your phone number ?</span>
+                    <input type="number" name="number" id="number" placeholder="Write your number here..." required>
+                </div>
+                <div id="booksubmit">
+                    <input type="submit" class="btn btn-bookcustom2 "id="submitbookBtn">Book now</button>
+                </div>
+            </form>
+        </div>
+    
+</body>
+
 
 
 
