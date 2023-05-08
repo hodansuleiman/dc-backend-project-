@@ -437,3 +437,9 @@ label a{
     animation: zoomin; 
     animation-duration: 2s;
 }
+
+
+.carousel-item {
+    height:32rem;
+    background-color:#777;
+}

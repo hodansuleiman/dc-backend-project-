@@ -171,6 +171,16 @@ if(window.location.pathname === '/landing'){
 
 const searchContainer = document.querySelector('#search-container');
 
+
+// //retrieve user info from login
+// const queryString = window.location.search;
+// const urlParams = new URLSearchParams(queryString);
+// const firstName = urlParams.get('firstName');
+
+// // display user's first name in greeting
+// const greeting = document.getElementById("user-greeting");
+// greeting.innerHTML = `Hello, ${req.session.userId}!`;
+
 function userSearchForm() {
     
     const html = `
@@ -211,6 +221,10 @@ userSearchForm(); // calling fumction
         .then(data => {
 
       
+
+            
+
+
         console.log("data",data.properties)
         for(let i = 0; i<10; i++){
          let property = data.properties[i]
@@ -248,7 +262,9 @@ userSearchForm(); // calling fumction
                       bathrooms: property.bathrooms,
                       price: price,
                       id: property.id,
-                      acc: property.accommodates
+                      rating: property.rating,
+                      acc: property.accommodates,
+                      img: property.img_cover
                     };
                     console.log("did i save?",  clickedInfo)
                     localStorage.setItem('clickedInfo', JSON.stringify(clickedInfo)); // save it in local storage
@@ -274,7 +290,7 @@ userSearchForm(); // calling fumction
 
 
 if(window.location.pathname.includes("/booking")) {
-    console.log(window.location.pathname)
+    console.log("catch",window.location.pathname)
     const urlParams = new URLSearchParams(window.location.search); // // create a new url using URLSearchParams object using querystring portion of the URL (that part after the ?)  
     const propertyId = urlParams.get('id');  // get the value of 'id' 
     const myInfoData = JSON.parse( localStorage.getItem('clickedInfo') );// get  JSON-formatted string from local storage using the key "clickedInfo" and parse it into a JavaScript object using JSON.parse()
@@ -283,13 +299,15 @@ if(window.location.pathname.includes("/booking")) {
 
 
     const propertyIdDiv = document.getElementById('property-id'); // set  the innerHTML property of an HTML element with the ID 'property-id"
-    const {bedrooms, bathrooms,title, price, acc} = myInfoData; //retrieves the myInfoData object that was previously parsed from JSON in the previous code block. It uses destructuring to extract the values of the bedrooms, bathrooms, title, price, and acc properties from myInfoData
+    const {bedrooms, bathrooms,title, price, acc, rating, img} = myInfoData; //retrieves the myInfoData object that was previously parsed from JSON in the previous code block. It uses destructuring to extract the values of the bedrooms, bathrooms, title, price, and acc properties from myInfoData
     
     //sets the content of the propertyIdDiv element to this HTML string
     //  p tags containing information about the property, including its title, number of bedrooms and bathrooms, price, and the number of people it accommodates. It also includes an h4 tag containing the property's title.
 
     propertyIdDiv.innerHTML = ` 
     <h4>${title}</h4>
+    <p>Rating: ${rating}</p>
+    <img src="${img}"/>
     <p>Bedrooms ${bedrooms}</p>
     <p>Bathrooms ${bathrooms}</p>
     <p>Price ${price}</p>
@@ -298,7 +316,14 @@ if(window.location.pathname.includes("/booking")) {
     `;
     
     
-    
+    document.querySelector("#price").textContent = "$" + price + " per night"
+    document.querySelector("#inputPrice").value = price
+
+
+    // document.querySelector("#bookingForm2").addEventListener("submit", (e)=>{
+    //     e.preventDefault();
+    //     console.log("hello from form")
+    // })
     /**
      * The function calculates the total number of days stayed and the corresponding price based on the
      * start and end dates selected by the user.
@@ -322,6 +347,19 @@ if(window.location.pathname.includes("/booking")) {
     })
     
 
+ 
+    
+}
+
+
+if(window.location.pathname.includes("/payment")) {
+    const urlParams = new URLSearchParams(window.location.search); // // create a new url using URLSearchParams object using querystring portion of the URL (that part after the ?)  
+    const people = urlParams.get('people');  // get the value of 'id' 
+    const price = parseInt( urlParams.get('price') );  // get the value of 'id' 
+    const startdate = urlParams.get('startdate');  // get the value of 'id' 
+    const enddate = urlParams.get('enddate');  // get the value of 'id' 
+    let totalDaysStayed = 0;
+
     function calcTotal(){
         if(startdate === "" || enddate === ""){
             //i need both dates to be valid
@@ -330,10 +368,10 @@ if(window.location.pathname.includes("/booking")) {
         let s = parseInt( dayjs(startdate).format("D") );
         let sMonth = dayjs(startdate).daysInMonth()
         let e = parseInt( dayjs(enddate).format("D") );
-        let eMonth = dayjs(startdate).daysInMonth()
+        let eMonth = dayjs(enddate).daysInMonth()
         let totalDaysStayed = 0;
 
-        console.log(s, e)
+        console.log("??",s, e, enddate)
         if(s < e){
           
            totalDaysStayed = e - s
@@ -344,7 +382,14 @@ if(window.location.pathname.includes("/booking")) {
         }
         console.log(totalDaysStayed);
         console.log("$" + totalDaysStayed * price)
+        return totalDaysStayed
+
 
     }
-    
+    totalDaysStayed = calcTotal();
+    let finalPrice = totalDaysStayed * price;
+    console.log("??", totalDaysStayed, price)
+    document.querySelector("#finalPrice").textContent = "$" + finalPrice;
+
+
 }

@@ -1,6 +1,6 @@
 
 <h2>Book your dream rental now at [COMPANY NAME]</h2>
-<form class="main-content" id="form">
+<form class="main-content" id="form" action="/payment" >
     <div class="search-container" id="search-container"></div>
     <div id="property-id"></div>
 
@@ -10,10 +10,10 @@
             <h1><span><img src="art-1.png" alt=""></span>Book Now <span><img src="art-1.png" alt=""></span></h1>
             <p>Book your dream rental now at [COMPANY NAME]</p>
         </div>
+
         <div class="s5050">
             <div class="bookmain-form">
-                <form action="index.php" method="get">
-                   
+           
                     <div>
                        
                         <span>How many people ?</span>
@@ -32,34 +32,32 @@
                         </select>
                       
                     </div>
-                    <div>
-                        <span>What time ?</span>
-                        <input type="text" name="time" id="time" placeholder="Time" required>
-                    </div>
-                    <div>
-                        <span>Check-in</span>
-                        <input type="date" name="date" id="startdate" placeholder="date" required>
-                    </div>
-                    <div>
-                        <span>Check-out</Check-in></span>
-                        <input type="date" name="date" id="enddate" placeholder="date" required>
-                    </div>
-                 
-                    <div id="booksubmit">
-                        <input type="submit" class="btn btn-bookcustom2 "id="submitbookBtn"></button>
-                    </div>
-                </form>
+                   
+                    
+       
             </div>
             <div>
-                <h2>Preview</h2>
-                <div id="preview">
-
+                <div id="price"></div>
+                <input type="hidden" name="price" id="inputPrice">
+                <div>
+                    <span>Check-in</span>
+                    <input type="date" name="startdate" id="startdate" placeholder="date" required>
                 </div>
+                <div>
+                    <span>Check-out</Check-in></span>
+                    <input type="date" name="enddate" id="enddate" placeholder="date" required>
+                </div>
+             
+                <div id="booksubmit">
+                    <input type="submit" class="btn btn-bookcustom2 "id="submitbookBtn"></button>
+                </div>
+
+                
             </div>
         </div>
-       
+</form>
     
-</body>
+
 
 
 

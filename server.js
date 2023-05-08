@@ -55,7 +55,7 @@ server.get("/landing", (req, res) => {
   });
 
 server.get('/management', (req,res) =>{
-    console.log('pota', req.url);
+   // console.log('pota', req.url);
     res.render('index', {
         locals: setNavs (req.url,navs, !!req.session.userId), // req.url is current Href
         partials: setMainView('management')
@@ -161,7 +161,8 @@ server.get('/vendors', (req,res) =>{
     }); 
 });
 
-server.get('/payment', (req,res) =>{
+server.get('/payment',  (req,res) =>{
+    console.log("hello payment")
     res.render('index', {
         locals: setNavs (req.url,navs, !!req.session.userId), // req.url is current Href
         partials: setMainView('payment') // this line contact-us is the name of the file that is in the views directory
