@@ -31,18 +31,50 @@ form.addEventListener('submit', handleSubmit); // handeling submit eventon form 
 
 function renderForm() {
         const html = `
-        <div class="input-field"> 
-            <input type="text" name="username" id="username" placeholder="Enter Username">
+        <div class="box2">
+    <div class="container">
+        <div class="top">
+            <span>Have an account?</span>
         </div>
         <div class="input-field">
-            <input type="password" name="password" id="password" placeholder="Enter Password">
-        </div>  
-            <input type="submit" value="LogIn">
+            <input type="text" class="input" placeholder="Username" id="">
+            <i class='bx bx-user' ></i>
+        </div>
+        <div class="input-field">
+            <input type="Password" class="input" placeholder="Password" id="">
+            <i class='bx bx-lock-alt'></i>
+        </div>
+        <div class="input-field">
+            <input type="submit" class="submit" value="Login" id="">
+        </div>
+        <p> Don't have an account yet? <a href="/register"> Register</a></p>
+        <div class="two-col">
+            <div class="one">
+               <input type="checkbox" name="" id="check">
+               <label for="check"> Remember Me</label>
+            </div>
+            <div class="two">
+                <label><a href="#">Forgot password?</a></label>
+            </div>
+        </div>
+    </div>
+</div>  
+</body>
+</html>
         `;
    
         credsContainer.innerHTML = html;
 }
 
+// <div class="input-field"> 
+        //     <input type="text" name="username" id="username" placeholder="Enter Username">
+        //     <i class='bx bx-user' ></i>
+        // </div>
+        // <div class="input-field">
+        //     <input type="password" name="password" id="password" placeholder="Enter Password">
+        //   
+        // </div>  
+        //     <input type="submit" value="LogIn">
 
 async function doLogin(body) {
     const data = await fetch('/login', {
@@ -71,7 +103,7 @@ form.addEventListener('submit', handleSubmit); // handeling submit eventon form 
 function renderRegisterForm() {
     console.log('testing')
     const html = `
-    <div class="input-field">
+    <div class="reginput-field">
     <fieldset>
     <label for="Type">Group type</label>
     <input type='text' class="form-control" id="groupType" required />
@@ -79,6 +111,7 @@ function renderRegisterForm() {
     <fieldset>
     <label for="First Name">First Name</label>
     <input type='text' class="form-control" id="firstName" required />
+    <i class='bx bx-user' ></i>
     </fieldset>
     <fieldset>
     <label for="Last Name">Last Name</label>
@@ -91,13 +124,15 @@ function renderRegisterForm() {
     <fieldset>
     <label for="Password">Password</label> 
     <input type='text' class="form-control" id="password" required />
+    <i class='bx bx-lock-alt'></i>
     </fieldset>
     <fieldset>
     <label for ="Confirm Password">Confirm Password</label>
     <input type='text' class="form-control" id="confirmPassword" required />
+    <i class='bx bx-lock-alt'></i>
     </fieldset>
 
-        <input type="submit" value="Register">
+        <input type="submit" value="Register" id=regsubmitbtn>
         </div>
     `;
     regcredsContainer.innerHTML = html;
@@ -193,10 +228,10 @@ userSearchForm(); // calling fumction
             //add to the dom
             
             newdiv.innerHTML = `<div class="box">
-            <div class="boxImg" style="background-image: url(${property.img_cover})"></div>
+            <div class="boxImg animate__animated animate__pulse" style="background-image: url(${property.img_cover})"></div>
     
-            <h4>${property.title}</h4>
-           <p>Bedrooms</p> <p>${property.bedrooms}</p>
+            <h4> Enjoy your stay at ${property.title}</h4>
+           <p>Bedrooms:${property.bedrooms}</p>
             <p>Bathrooms: ${property.bathrooms}</p>
             <p>Price:$ ${price} </p>
             <a href="booking?id=${property.id}" class="rent-now-link"}">Rent Now</a>

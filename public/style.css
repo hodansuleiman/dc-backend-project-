@@ -1,3 +1,6 @@
+
+
+
 * {
     box-sizing:border-box;
     margin: 0;
@@ -10,7 +13,13 @@
   }
 
 body{
-    background-color: #FAF9F9;
+    background-color: #e1b382;
+    font-family: 'DM Sans', sans-serif;
+    font-style: normal;
+    font-size: 16px;
+    line-height: 1.6;;
+    letter-spacing: normal;
+    
 }
 
 a{
@@ -21,12 +30,11 @@ a{
 
 body,
 html {
-    font-family: sans-serif;
     height: 100%;
 }
 
 footer {
-    background-color: #BEE3DB;
+    background-color: #2d545e;
     color: white;
     text-align: center;
     padding: 24px 0;
@@ -34,13 +42,14 @@ footer {
 
 
 header {
-    background-color: #BEE3DB;
+    background-color: #2d545e;
     padding: 20px 0;
 }
 
 .main-content {
     flex: 1;
     padding: 20px 0;
+    animation-duration: 2s;
 }
 .y-wrap {
     margin: 0 auto;
@@ -53,31 +62,88 @@ flex-direction: column;
 height: 100%
 }
 
-.credentials-container{
+/* .credentials-container{
     display: flex;
     flex-direction: column;
     margin: 0 auto;
     width: 180px;
 }
+ */
 
-
+/*
 .credentials-container input{
+    /*
     margin: 14px 0;
     padding: 6px 12px;
     width: 100px;
+     height: 45px;
+    width: 87%;
+    border: none;
+    border-radius: 30px;
+    color: #fff;
+    font-size: 15px;
+    padding: 0 0 0 45px;
+    background: rgba(255,255,255,0.1);
+    outline: none;
 }
+    */
+    .regcredentials-container input{
+    height: 45px;
+    width: 87%;
+    border: none;
+    border-radius: 30px;
+    color: #fff;
+    font-size: 15px;
+    padding: 0 0 0 45px;
+    background: rgba(255,255,255,0.1);
+    outline: none;
+    }
 
 
+    .reginput-field{
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    padding: 0 15px 0 15px;
+    }
+
+    .reginput-field  .input-field {
+        height: 45px;
+        width: 87%;
+        border: none;
+        border-radius: 30px;
+        color: #fff;
+        font-size: 15px;
+        padding: 0 0 0 45px;
+        background: rgba(255,255,255,0.1);
+        outline: none;
+    }
+
+
+    #regsubmitbtn{
+        border: none;
+        border-radius: 30px;
+        font-size: 15px;
+        height: 45px;
+        outline: none;
+        width: 100%;
+        color: black;
+        background: rgba(255,255,255,0.7);
+        cursor: pointer;
+        transition: .3s ;
+    }
+    #regsubmitbtn:hover{
+        box-shadow: 1px 5px 7px 1px rgba(0, 0, 0, 0.2);
+    }
+/*
 .credentials-container input[type="sumbit"]{
     cursor:pointer;
 }
-
+ */
+   
+ /*
 .regcredentials-container{
     display: flex;
-   
-
-
-
 }
 
 .regcredentials-container input {
@@ -86,9 +152,15 @@ height: 100%
     width: 100px;
 }
 
+/*
+
 .credentials-container input[type="sumbit"] {
     cursor:pointer;
 }
+
+*/
+
+
 header{
     display: flex;
     justify-content: space-between;
@@ -133,6 +205,7 @@ fieldset{
 }
 
 .box{
+    animation: pulse;
     max-width: 100%;
     border-radius: 10px;
 }
@@ -177,17 +250,16 @@ h4{
     border-radius: 10px;
     background-position: center;
 }
-
+ 
 
 #social{
     height: 25px;
     max-height: 25px;
     width: auto;
-   }
+}
 
 
    .main_bg{
-    background-image: url(background.jpg);
     max-width: 1280px;
     height: 800px;
     display: flex;
@@ -209,7 +281,6 @@ h4{
 
 .bookingform-text h1{
     color: green;
-    font-family: 'Akaya Telivigala', cursive;
     font-size: 40px;
     margin-bottom: 20px;
 
@@ -217,7 +288,6 @@ h4{
 
 .bookingform-text p{
     color: #fff;
-    font-family: 'Akaya Telivigala', cursive;
     font-size: large;
 }
 
@@ -229,7 +299,6 @@ h4{
 
 .bookmain-form div input {
     width: 100%;
-    font-family: 'Akaya Telivigala', cursive;
     background: none;
     border: 1px solid #ffca00;;
     font-size: 20px;
@@ -240,7 +309,6 @@ h4{
 }
 .bookmain-form div select{
     width: 104%;
-    font-family: 'Akaya Telivigala', cursive;
     background: none;
     border: 1px solid #ffca00;;
     font-size: 20px;
@@ -251,7 +319,6 @@ h4{
 }
 .main-form div span{
     width: 100%;
-    font-family: 'Akaya Telivigala', cursive;
     color: orange;
     font-size: 25px;
 }
@@ -261,14 +328,12 @@ h4{
     text-align: center;
 }
 #submitbookBtn input{
-    font-family: 'Akaya Telivigala', cursive;
     width: 200px;
     background-color: red,
     color green;
     transition: all .3s;
 }
 #submitbookBtn input:hover{
-    font-family: 'Akaya Telivigala', cursive;
     width: 200px;
     background-color: black 
 
@@ -293,3 +358,82 @@ h4{
 }
         
 
+
+/* login page style starts here */
+.box2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+}
+.container{
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    padding: 0 15px 0 15px;
+    
+}
+span{
+    color: #fff;
+    font-size: small;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0 10px 0;
+}
+
+.input-field .input{
+    height: 45px;
+    width: 87%;
+    border: none;
+    border-radius: 30px;
+    color: #fff;
+    font-size: 15px;
+    padding: 0 0 0 45px;
+    background: rgba(255,255,255,0.1);
+    outline: none;
+}
+
+i{
+    position: relative;
+    top: -33px;
+    left: 17px;
+    color: #fff;
+}
+::-webkit-input-placeholder{
+    color: #fff;
+}
+.submit{
+    border: none;
+    border-radius: 30px;
+    font-size: 15px;
+    height: 45px;
+    outline: none;
+    width: 100%;
+    color: black;
+    background: rgba(255,255,255,0.7);
+    cursor: pointer;
+    transition: .3s ;
+}
+.submit:hover{
+    box-shadow: 1px 5px 7px 1px rgba(0, 0, 0, 0.2);
+}
+.two-col{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: #fff;
+    font-size: small;
+    margin-top: 10px;
+}
+.one{
+    display: flex;
+}
+label a{
+    text-decoration: none;
+    color: #fff;
+}
+
+.homedisplay{
+    animation: zoomin; 
+    animation-duration: 2s;
+}
