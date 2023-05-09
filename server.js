@@ -5,6 +5,18 @@ const cookieParser = require('cookie-parser');
 const es6Renderer = require('express-es6-template-engine');
 const express = require('express');
 const sessions = require('express-session');
+const pgp = require('pg-promise')();
+
+const cn = {
+  host: 'localhost',
+  port: 5432,
+  database: 'digitalCrafts',
+  user: 'postgres',
+  password: 'test',
+  allowExitOnIdle: true
+};
+
+const db = pgp(cn);
 
 //import modules bring in named module export 
 const {checkAuth} = require('./middleware');
@@ -25,23 +37,24 @@ server.set('view engine', 'html');
 server.use(express.static(__dirname + '/public')); // .use is key word that will be used for middleware for every single file
 server.use(express.json());
 server.use(cookieParser());
-server.use(sessions ({ //settings for sessions
-    secret: process.env.SECRET,
-    saveUninitialized: true,
-    cookie: {maxAge: 30000}, //forcing into expiry after 30 secs locked out
-    resave:false
-}))
+// server.use(sessions ({ //settings for sessions
+//     secret: process.env.SECRET,
+//     saveUninitialized: true,
+//     cookie: {maxAge: 30000}, //forcing into expiry after 30 secs locked out
+//     resave:false
+// }))
 
 
 //hard code creds
-const validCreds = {
-    password:'1234',
-    username:'anna'
-};
+// const validCreds = {
+//     password:'1234',
+//     username:'anna'
+// };
 
 server.get('/', (req,res) =>{
     res.render('index', {
-        locals: setNavs (req.url,navs, !!req.session.userId), // req.url is current Href
+        // locals: setNavs (req.url,navs, !!req.session.userId), // req.url is current Href
+      locals: setNavs(req.url, navs),
         partials: setMainView('login')
     }); 
 });
@@ -76,13 +89,13 @@ server.get('/clients', (req,res) =>{
     }); 
 });
 
-// server.get('/booking', (req,res) =>{
-//     res.render('index', {
-//         locals: setNavs (req.url,navs, !!req.session.userId), // req.url is current Href
-//         bookingId: req.query.id,
-//         partials: setMainView('booking')
-//     }); 
-// });
+server.get('/booking', (req,res) =>{
+    res.render('index', {
+        locals: setNavs (req.url,navs, !!req.session.userId), // req.url is current Href
+        bookingId: req.query.id,
+        partials: setMainView('booking')
+    }); 
+});
 
 server.get('/booking', (req,res) =>{
     console.log(req.query.id);
