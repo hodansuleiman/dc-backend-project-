@@ -90,17 +90,6 @@ height: 100%
     outline: none;
 }
     */
-    .regcredentials-container input{
-    height: 45px;
-    width: 87%;
-    border: none;
-    border-radius: 30px;
-    color: #fff;
-    font-size: 15px;
-    padding: 0 0 0 45px;
-    background: rgba(255,255,255,0.1);
-    outline: none;
-    }
 
 
     .reginput-field{
@@ -123,21 +112,6 @@ height: 100%
     }
 
 
-    #regsubmitbtn{
-        border: none;
-        border-radius: 30px;
-        font-size: 15px;
-        height: 45px;
-        outline: none;
-        width: 100%;
-        color: black;
-        background: rgba(255,255,255,0.7);
-        cursor: pointer;
-        transition: .3s ;
-    }
-    #regsubmitbtn:hover{
-        box-shadow: 1px 5px 7px 1px rgba(0, 0, 0, 0.2);
-    }
 /*
 .credentials-container input[type="sumbit"]{
     cursor:pointer;
@@ -168,7 +142,7 @@ header{
     display: flex;
     justify-content: space-between;
     align-items: center;;
-    padding: 20px 15px;
+    padding: 0px 15px;
 }
 
 
@@ -178,8 +152,13 @@ header{
 }
 
 .navs a {
-    margin: 0 0 0 24px;
-    
+    color: black;
+    padding: 20px 10px;
+    text-decoration: none;
+}
+.navs a:hover{
+    color: white;
+    background-color: red;
 }
 
 .navs a.active {
@@ -275,7 +254,7 @@ h4{
 
 .bookingform-text {
     text-align: center;
-    margin: 0 0 40px 0;
+    margin: 0 0 10px 0;
 }
 
 .bookingform-text h1 span img{
@@ -283,9 +262,9 @@ h4{
 }
 
 .bookingform-text h1{
-    color: green;
+
     font-size: 40px;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
 
 }
 
@@ -325,7 +304,30 @@ h4{
     color: orange;
     font-size: 25px;
 }
+.bookingform .form-group, .inputBox{
+    display: flex;
 
+    padding: 10px 0px;
+    align-items: center;
+}
+.bookingform .form-group > span, .inputBox > span,  .inputBox > label{
+    width: 250px;
+
+}
+
+#finalPrice{
+    text-align: right;
+    font-size: 40px;
+}
+.inputBox input{
+    border: none;
+    border-radius: 5px;
+    padding: 1px;;
+}
+.bookingform select{
+    width: 143px;
+
+}
 #submitbookBtn{
     width: 100%;
     text-align: center;
@@ -352,12 +354,17 @@ h4{
 .s5050{
     display: flex;;
     flex-direction: row;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 10px;
 }
 
 .s5050 > div{
-    width: 48%;
+    width: 50%;
+    background: white;
+    padding: 15px;
+    border-radius: 5px;
+}
 }
         
 
@@ -369,12 +376,28 @@ h4{
     align-items: center;
     min-height: 90vh;
 }
-.container{
-    width: 350px;
+.container-login{
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.row{
+    display: flex;
+    justify-content: center;
+}
+.centerBox{
+    max-width: 600px;
+}
+.homedisplay{
+    font-size: 30px;
+}
+.container-login-input{
     display: flex;
     flex-direction: column;
-    padding: 0 15px 0 15px;
-    
+    gap: 11px;
+}
 }
 span{
     color: #fff;
@@ -384,17 +407,7 @@ span{
     padding: 10px 0 10px 0;
 }
 
-.input-field .input{
-    height: 45px;
-    width: 87%;
-    border: none;
-    border-radius: 30px;
-    color: #fff;
-    font-size: 15px;
-    padding: 0 0 0 45px;
-    background: rgba(255,255,255,0.1);
-    outline: none;
-}
+
 
 i{
     position: relative;
@@ -446,3 +459,87 @@ label a{
 .carousel-fade .carousel-item, .carousel-item img  {
   max-height: 90vh;
 }
+
+footer{
+    padding: 30px 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+footer div{
+    text-align: left;
+}
+footer div:nth-child(2){
+    display: flex;
+    gap: 10px
+}
+
+.carousel-item{
+    width: 100%;
+    height: 500px;
+    background-size: cover;
+}
+
+.carousel-control-next, .carousel-control-prev {
+    width: 8%;
+    opacity: 1;
+}
+
+.grad {
+    font-size: 40px;
+
+    background-image: linear-gradient(to right, #6399a7 , #2d545e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .btn-primary{
+    color: white;
+    background-color:  #2d545e;
+    border: none;
+    
+  }
+  .blue{
+    color: #2d545e;
+  }
+  .btn-primary:hover{
+    background-color: white;
+    color:  #2d545e;
+}
+  .btn-wide{
+    width: 100%;
+  }
+
+  .input-field .input{
+    height: 45px;
+    width: 100%;
+    border: none;
+    border-radius: 30px;
+    color: black;
+    font-size: 15px;
+    padding: 0 0 0 45px;
+    background: white;
+    outline: none;
+}
+.input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: gray;
+    opacity: .5; /* Firefox */
+  }
+
+  .bookingImg{
+    background-size: cover;
+    width: 100%;
+    height: 300px;
+    background-position: center;
+  }
+
+  .bookingSet{
+    display: flex;;
+    margin-bottom: 30px;
+  }
+  .bookingSet > div{
+    width: 50%;
+  }
+  .bookingSet p{
+    margin: 0px;
+  }
