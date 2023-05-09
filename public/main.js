@@ -89,6 +89,10 @@ function renderRegisterForm() {
     <input type='text' class="form-control" id="emailAddress" required />
     </fieldset>
     <fieldset>
+    <label for="Username">Username</label>
+    <input type='text' class="form-control" id="username" required />
+    </fieldset>
+    <fieldset>
     <label for="Password">Password</label> 
     <input type='text' class="form-control" id="password" required />
     </fieldset>
@@ -107,8 +111,9 @@ function renderRegisterForm() {
 const user = {
     groupType: document.querySelector("#grouptype").value,
     firstName: document.querySelector("#firstName").value,
-    lastName: document.querySelector("#lastName").value,
-    email: document.querySelector("#emailAddress").value,
+  lastName: document.querySelector("#lastName").value,
+  email: document.querySelector("#emailAddress").value,
+    username: document.querySelector("#username").value,
     password: document.querySelector("#password").value,
     confirmPassword: document.querySelector("#confirmPassword").value,
 }
