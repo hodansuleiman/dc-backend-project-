@@ -1,6 +1,9 @@
 
 
 
+
+
+
 * {
     box-sizing:border-box;
     margin: 0;
@@ -439,7 +442,7 @@ label a{
 }
 
 
-.carousel-item {
-    height:32rem;
-    background-color:#777;
+
+.carousel-fade .carousel-item, .carousel-item img  {
+  max-height: 90vh;
 }
