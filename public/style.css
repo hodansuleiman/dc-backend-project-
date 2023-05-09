@@ -365,7 +365,7 @@ h4{
     padding: 15px;
     border-radius: 5px;
 }
-}
+
         
 
 
@@ -398,7 +398,7 @@ h4{
     flex-direction: column;
     gap: 11px;
 }
-}
+
 span{
     color: #fff;
     font-size: small;
@@ -489,6 +489,7 @@ footer div:nth-child(2){
     font-size: 40px;
 
     background-image: linear-gradient(to right, #6399a7 , #2d545e);
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
