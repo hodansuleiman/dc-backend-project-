@@ -31,8 +31,8 @@ form.addEventListener('submit', handleSubmit); // handeling submit eventon form 
 
 function renderForm() {
         const html = `
-        <div class="box2">
-    <div class="container">
+        <div class="">
+    <div class="container-login-input">
         <div class="top">
             <span>Have an account?</span>
         </div>
@@ -45,7 +45,7 @@ function renderForm() {
             <i class='bx bx-lock-alt'></i>
         </div>
         <div class="input-field">
-            <input type="submit" class="submit" value="Login" id="">
+            <input type="submit" class="btn btn-primary btn-wide" class="submit" value="Login" id="">
         </div>
         <p> Don't have an account yet? <a href="/register"> Register</a></p>
         <div class="two-col">
@@ -104,35 +104,37 @@ function renderRegisterForm() {
     console.log('testing')
     const html = `
     <div class="reginput-field">
-    <fieldset>
-    <label for="Type">Group type</label>
-    <input type='text' class="form-control" id="groupType" required />
-    </fieldset>
-    <fieldset>
-    <label for="First Name">First Name</label>
-    <input type='text' class="form-control" id="firstName" required />
-    <i class='bx bx-user' ></i>
-    </fieldset>
-    <fieldset>
-    <label for="Last Name">Last Name</label>
-    <input type='text' class="form-control" id="lastName" required />
-    </fieldset>
-    <fieldset>
-    <label for="Email Address">Email Address</label> 
-    <input type='text' class="form-control" id="emailAddress" required />
-    </fieldset>
-    <fieldset>
-    <label for="Password">Password</label> 
-    <input type='text' class="form-control" id="password" required />
-    <i class='bx bx-lock-alt'></i>
-    </fieldset>
-    <fieldset>
-    <label for ="Confirm Password">Confirm Password</label>
-    <input type='text' class="form-control" id="confirmPassword" required />
-    <i class='bx bx-lock-alt'></i>
-    </fieldset>
+  
 
-        <input type="submit" value="Register" id=regsubmitbtn>
+    <div class="inputBox">
+    <span>Group type</span>
+    <input type='text' " id="groupType" required />
+    </div>
+    <div class="inputBox">
+    <label for="First Name">First Name</label>
+    <input type='text' id="firstName" required />
+ 
+    </div>
+    <div class="inputBox">
+    <label for="Last Name">Last Name</label>
+    <input type='text'  id="lastName" required />
+    </div>
+    <div class="inputBox">
+    <label for="Email Address">Email Address</label> 
+    <input type='text'  id="emailAddress" required />
+    </div>
+    <div class="inputBox">
+    <label for="Password">Password</label> 
+    <input type='text'  id="password" required />
+    <i class='bx bx-lock-alt'></i>
+    </div>
+    <div class="inputBox">
+    <label for ="Confirm Password">Confirm Password</label>
+    <input type='text' id="confirmPassword" required />
+
+    </div>
+
+        <input type="submit" class="btn btn-primary" value="Register" id=regsubmitbtn>
         </div>
     `;
     regcredsContainer.innerHTML = html;
@@ -185,18 +187,25 @@ function userSearchForm() {
     
     const html = `
     <div class="input-group mb-3">
-      <input type="text" class="form-control" name="address" placeholder="Search for Address" id="inputaddress">
-      <span class="input-group-text"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+      <input type="text" class="form-control" id="formAdd" name="address" placeholder="Search for Address" id="inputaddress">
+      <span id="submitBtn" class="input-group-text"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
           <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
         </svg></span>
     </div>
-  <button type="submit" class="btn btn-custom2" id="submitBtn">Search</button>
+
     `;
     searchContainer.innerHTML = html;
 
 }
 
 userSearchForm(); // calling fumction 
+
+    document.querySelector("#submitBtn").addEventListener("click", (e)=>{
+        console.log("click")
+        
+        getProperty(document.querySelector("#formAdd").value) // multiple fields 
+      document.querySelector("#carouselExampleInterval").style.display = "none";
+    })
    
    document.querySelector("#form").addEventListener("submit",(e)=>{
     e.preventDefault();
@@ -248,7 +257,7 @@ userSearchForm(); // calling fumction
            <p>Bedrooms:${property.bedrooms}</p>
             <p>Bathrooms: ${property.bathrooms}</p>
             <p>Price:$ ${price} </p>
-            <a href="booking?id=${property.id}" class="rent-now-link"}">Rent Now</a>
+            <a href="booking?id=${property.id}" class="btn btn-primary rent-now-link"}">Rent Now</a>
             </div>`;
    
             // Add an event listener to the "Rent Now" link inside the new div
@@ -305,13 +314,15 @@ if(window.location.pathname.includes("/booking")) {
     //  p tags containing information about the property, including its title, number of bedrooms and bathrooms, price, and the number of people it accommodates. It also includes an h4 tag containing the property's title.
 
     propertyIdDiv.innerHTML = ` 
+    <div class="bookingSet"> <div>
     <h4>${title}</h4>
     <p>Rating: ${rating}</p>
-    <img src="${img}"/>
     <p>Bedrooms ${bedrooms}</p>
     <p>Bathrooms ${bathrooms}</p>
     <p>Price ${price}</p>
     <p>Accommodates ${acc}</p>
+    </div><div class="bookingImg" style="background-image: url('${img}')"></div>
+   </div>
     
     `;
     

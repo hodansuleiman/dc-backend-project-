@@ -7,51 +7,42 @@
 <body class="main-bg">
     <div class="bookingform">
         <div class="bookingform-text">
-            <h1><span><img src="art-1.png" alt=""></span>Book Now <span><img src="art-1.png" alt=""></span></h1>
-            <p>Book your dream rental now at [COMPANY NAME]</p>
+            <h1 class="blue">Book Now</h1>
         </div>
-
         <div class="s5050">
-            <div class="bookmain-form">
-           
-                    <div>
-                       
-                        <span>How many people ?</span>
-                        <select name="people" id="people" required>
-                            <option value=""><---People---></option>
-                            <option value="1">1 People</option>
-                            <option value="2">2 People</option>
-                            <option value="3">3 People</option>
-                            <option value="4">4 People</option>
-                            <option value="5">5 People</option>
-                            <option value="6">6 People</option>
-                            <option value="7">7 People</option>
-                            <option value="8">8 People</option>
-                            <option value="9">9 People</option>
-                            <option value="10">10 People</option>
-                        </select>
-                      
-                    </div>
-                   
-                    
-       
-            </div>
+            
             <div>
-                <div id="price"></div>
+                <h2>John Doe</h2>
+                <h3 id="price"></h3>
+                <div class="form-group">
+                    <span>How many people ?</span>
+                    <select name="people" id="people" required>
+                        <option value="1">1 Person</option>
+                        <option value="2">2 People</option>
+                        <option value="3">3 People</option>
+                        <option value="4">4 People</option>
+                        <option value="5">5 People</option>
+                        <option value="6">6 People</option>
+                        <option value="7">7 People</option>
+                        <option value="8">8 People</option>
+                        <option value="9">9 People</option>
+                        <option value="10">10 People</option>
+                    </select>
+                </div>
                 <input type="hidden" name="price" id="inputPrice">
-                <div>
+                <div class="form-group">
                     <span>Check-in</span>
                     <input type="date" name="startdate" id="startdate" placeholder="date" required>
                 </div>
-                <div>
+                <div class="form-group">
                     <span>Check-out</Check-in></span>
                     <input type="date" name="enddate" id="enddate" placeholder="date" required>
                 </div>
-             
-                <div id="booksubmit">
-                    <input type="submit" class="btn btn-bookcustom2 "id="submitbookBtn"></button>
+                <div class="form-group">
+      
+                    <input type="submit" class="btn btn-wide btn-primary "id="submitbookBtn"></button>
+   
                 </div>
-
                 
             </div>
         </div>
