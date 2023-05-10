@@ -5,6 +5,29 @@ const cookieParser = require('cookie-parser');
 const es6Renderer = require('express-es6-template-engine');
 const express = require('express');
 const sessions = require('express-session');
+const pool = require("./db");
+
+//Routes Desired
+
+//Create a new user
+app.post("/user", async (req, res) => {
+  try {
+
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
+//Save user to database
+//Login user
+//Logout user
+//Get user profile
+//Update user profile
+//Delete user profile
+
+//import modules
+
+
 
 //import modules bring in named module export 
 const {checkAuth} = require('./middleware');
