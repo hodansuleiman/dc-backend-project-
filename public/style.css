@@ -1,9 +1,4 @@
 
-
-
-
-
-
 * {
     box-sizing:border-box;
     margin: 0;
@@ -65,32 +60,6 @@ flex-direction: column;
 height: 100%
 }
 
-/* .credentials-container{
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto;
-    width: 180px;
-}
- */
-
-/*
-.credentials-container input{
-    /*
-    margin: 14px 0;
-    padding: 6px 12px;
-    width: 100px;
-     height: 45px;
-    width: 87%;
-    border: none;
-    border-radius: 30px;
-    color: #fff;
-    font-size: 15px;
-    padding: 0 0 0 45px;
-    background: rgba(255,255,255,0.1);
-    outline: none;
-}
-    */
-
 
     .reginput-field{
     width: 350px;
@@ -112,25 +81,6 @@ height: 100%
     }
 
 
-/*
-.credentials-container input[type="sumbit"]{
-    cursor:pointer;
-}
- */
-   
- /*
-.regcredentials-container{
-    display: flex;
-}
-
-.regcredentials-container input {
-    margin: 14px 0;
-    padding: 6px 12px;
-    width: 100px;
-}
-
-/*
-
 .credentials-container input[type="sumbit"] {
     cursor:pointer;
 }
@@ -149,21 +99,47 @@ header{
 .navs{
     display: flex;
     justify-content: flex-end;
+ 
 }
 
 .navs a {
     color: black;
+    font-weight: 1000;
     padding: 20px 10px;
     text-decoration: none;
 }
 .navs a:hover{
-    color: white;
-    background-color: red;
+    color: #c89666;
+    background-color: white;
 }
 
 .navs a.active {
    color: #555b6e;
 }
+
+@media screen and (max-width: 768px) {
+    header {
+      flex-direction: column;
+      padding: 10px;
+    }
+  
+    .navs {
+      justify-content: center;
+      margin-top: 10px;
+    }
+  
+    .navs a {
+      padding: 10px;
+    }
+    
+  
+    .logo img {
+      max-width: 100px; 
+      height: auto; 
+     
+    }
+  }
+  
 fieldset{
     border:none;
     display: flex;
@@ -233,6 +209,20 @@ h4{
     background-position: center;
 }
  
+
+
+@media screen and (max-width: 768px) {
+    #output {
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+  
+    #output > div {
+      width: 48%;
+      padding: 10px 0;
+    }
+  }
+  
 
 #social{
     height: 25px;
@@ -349,6 +339,22 @@ h4{
     color: red;
 }
 
+@media screen and (max-width: 768px) {
+    .bookingform .form-group > span,
+    .inputBox > span,
+    .inputBox > label {
+      width: 100%;
+    }
+  
+    .bookingform select {
+      width: 100%;
+    }
+  
+    #submitbookBtn input {
+      width: 100%;
+    }
+  }
+  
 
 
 .s5050{
@@ -486,7 +492,7 @@ footer div:nth-child(2){
 }
 
 .grad {
-    font-size: 40px;
+    font-size: 35px;
 
     background-image: linear-gradient(to right, #6399a7 , #2d545e);
     background-clip: text;
@@ -544,3 +550,16 @@ footer div:nth-child(2){
   .bookingSet p{
     margin: 0px;
   }
+
+  .footer-bottom{
+    color: #c89666;
+    font-weight: 400;
+  }
+
+  
+#logo {
+    display: flex;
+    justify-content: center;
+    height: 120px;
+}
+

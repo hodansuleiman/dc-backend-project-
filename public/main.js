@@ -37,7 +37,7 @@ function renderForm() {
             <span>Have an account?</span>
         </div>
         <div class="input-field">
-            <input type="text" class="input" placeholder="Username" id="">
+            <input type="text" class="input" placeholder="Email" id="">
             <i class='bx bx-user' ></i>
         </div>
         <div class="input-field">
@@ -138,9 +138,21 @@ function renderRegisterForm() {
         </div>
     `;
     regcredsContainer.innerHTML = html;
+
+
+    // event listener for register button 
+    const regsubmitbtn = document.getElementById('regsubmitbtn');
+    regsubmitbtn.addEventListener('click', function(event) {
+    event.preventDefault();
+    window.location.href ='landing';
+})
+ 
 }
 
-// construct user object
+
+
+
+// POST TEMPLATE construct user object
 const user = {
     groupType: document.querySelector("#grouptype").value,
     firstName: document.querySelector("#firstName").value,
@@ -187,7 +199,7 @@ function userSearchForm() {
     
     const html = `
     <div class="input-group mb-3">
-      <input type="text" class="form-control" id="formAdd" name="address" placeholder="Search for Address" id="inputaddress">
+      <input type="text" class="form-control" id="formAdd" name="address" placeholder="Search by city" id="inputaddress">
       <span id="submitBtn" class="input-group-text"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
           <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
         </svg></span>
@@ -204,7 +216,7 @@ userSearchForm(); // calling fumction
         console.log("click")
         
         getProperty(document.querySelector("#formAdd").value) // multiple fields 
-      document.querySelector("#carouselExampleInterval").style.display = "none";
+      document.querySelector("#carouselExampleInterval").style.display = "none"; // i want to hide carousel
     })
    
    document.querySelector("#form").addEventListener("submit",(e)=>{
@@ -315,12 +327,13 @@ if(window.location.pathname.includes("/booking")) {
 
     propertyIdDiv.innerHTML = ` 
     <div class="bookingSet"> <div>
+    <h1 class="blue">Details</h1>
     <h4>${title}</h4>
     <p>Rating: ${rating}</p>
-    <p>Bedrooms ${bedrooms}</p>
-    <p>Bathrooms ${bathrooms}</p>
-    <p>Price ${price}</p>
-    <p>Accommodates ${acc}</p>
+    <p>Bedrooms: ${bedrooms}</p>
+    <p>Bathrooms: ${bathrooms}</p>
+    <p>Price:${price}</p>
+    <p>Accommodates: ${acc}</p>
     </div><div class="bookingImg" style="background-image: url('${img}')"></div>
    </div>
     
@@ -404,3 +417,14 @@ if(window.location.pathname.includes("/payment")) {
 
 
 }
+
+// cach
+const paynowButton = document.getElementById('paynow');
+
+// Add an event listener for the click event
+paynowButton.addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default action
+
+    // Redirect the user to the home page
+    window.location.href = '/';
+});
